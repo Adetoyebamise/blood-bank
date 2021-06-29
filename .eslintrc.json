@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "prettier", "plugin:node/recommended"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": "error",
+    "node/no-unpublished-require": [
+      "error",
+      {
+        "allowModules": [],
+        "convertPath": null,
+        "tryExtensions": [".js", ".json", ".node"]
+      }
+    ]
+  }
+}
