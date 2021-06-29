@@ -1,8 +1,9 @@
-### blood-bank
-An end to end point application that allows user to buy and donate blood
+### Blood Bank
+An end to end point application that allows user to buy and donate blood 
 
+-------
 
-#### Contribute !
+#### How to contribute
 
 --------
 
