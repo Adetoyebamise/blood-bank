@@ -1,5 +1,5 @@
-const Users = require('../../models/user-model/userModel')
 require('express-async-errors')
+const Users = require('../../models/user-model/userModel')
 const bcrypt = require('bcrypt')
 
 module.exports = class UserAuthService{
@@ -9,9 +9,9 @@ module.exports = class UserAuthService{
      */
     static async userRegistration(profile) {
         const newUser = await new Users(profile)
-        if(newUser.password != newUser.profile) throw Error('passwords do not match!')
-        let salt = await bcrypt.genSalt(10)
-        newUser.password = await bcrypt.hash(newUser.password, salt)
+        if(newUser.password != newUser.confirmPassword) throw Error('passwords do not match!')
+        const salt = await bcrypt.genSalt(10);
+        newUser.password = await bcrypt.hash(newUser.password, salt);
         return await newUser.save()
     }
 }
