@@ -34,4 +34,24 @@ module.exports = class BloodbankAuthService {
     console.log(savedBloodBank);
     return savedBloodBank;
   }
+
+  static async bloodbankLogin(profile) {
+    let existingBloodbank = await bloodBankModel.findOne({
+      email: profile.email,
+    });
+
+    if (!existingBloodbank) {
+      return "BloodBank not Found";
+    } else {
+      let password = await bcrypt.compare(
+        profile.password,
+        existingBloodbank.password
+      );
+      if (password) {
+        return existingBloodbank;
+      } else {
+        return "Email or Password Incorrect";
+      }
+    }
+  }
 };

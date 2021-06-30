@@ -9,7 +9,7 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  res.send("Perform login here");
+  BloodbankAuthController.LoginBloodbank(req, res);
 });
 
 module.exports = router;
