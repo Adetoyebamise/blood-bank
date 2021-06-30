@@ -1,0 +1,9 @@
+info: Alive on port 3000 {"timestamp":"2021-06-28T22:54:02.325Z"}
+
+info: json({ response code: "SUCCESS", success: "", error: null });
+
+info: json({
+        response code: "FAILED",
+        success: null,
+        error: error.message,
+      })
