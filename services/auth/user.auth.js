@@ -14,4 +14,12 @@ module.exports = class UserAuthService{
         newUser.password = await bcrypt.hash(newUser.password, salt);
         return await newUser.save()
     }
+
+    /**
+     * @param {userMail} email
+     * @returns access to user's profile if found
+     */
+    static async userAuthentication(email) {
+        return await Users.findOne({ email: email })
+    }
 }
