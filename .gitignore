@@ -1,7 +1,4 @@
 node_modules
 config
-<<<<<<< HEAD
 .env
-=======
-.DS_Store
->>>>>>> 97358a1b68be5047a8cb54f22f6fac61764de627
+.vscode
