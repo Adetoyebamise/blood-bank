@@ -6,4 +6,8 @@ info: json({
         response code: "FAILED",
         success: null,
         error: error.message,
-      })
+      })info: Alive on port 3000 {"timestamp":"2021-06-30T10:17:18.459Z"}
+info: Alive on port 3000 {"timestamp":"2021-06-30T10:18:49.721Z"}
+info: Alive on port 3000 {"timestamp":"2021-06-30T10:21:06.176Z"}
+info: Alive on port 3000 {"timestamp":"2021-06-30T10:23:37.156Z"}
+info: Alive on port 3000 {"timestamp":"2021-06-30T10:24:11.111Z"}
