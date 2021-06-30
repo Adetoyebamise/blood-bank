@@ -1,5 +1,5 @@
 require('express-async-errors')
-const UserAuthService = require('../../service/auth/user.auth')
+const UserAuthService = require('../../services/auth/user.auth')
 
 module.exports = class UserAuthController{
     /**
@@ -10,6 +10,7 @@ module.exports = class UserAuthController{
         const user = await UserAuthService.userRegistration(req.body)
         if(!user) return res.status(400).json({err: 'Bad request'})
         user.password = undefined
+        user.confirmPassword = undefined
         return res.status(200).json({
             user: user,
             err: null

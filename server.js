@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 // const logger = require("./configs/logger");
 const port = 3000 || process.env.PORT;
-const route = require('./route/index')
+const route = require('./routes/index')
 const connectDB = require('./dbConnection')
 
 route(app)
