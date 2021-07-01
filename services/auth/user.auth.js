@@ -4,13 +4,18 @@ const bcrypt = require('bcrypt')
 const Token = require('../../models/user-model/token')
 const crypto = require('crypto')
 const sendEmail = require('../../utils/email/sendMail')
+const Validations = require('../../validations/user.validation') 
 module.exports = class UserAuthService{
     /**
-     * @param {registration details} profile 
+     * @param {registration details} userProfile 
      * @returns created user's profile after saving to the database
      */
-    static async userRegistration(profile) {
-        const newUser = await new Users(profile)
+    static async userRegistration(userProfile) {
+        const { error, isValid } = await Validations.newUser(userProfile)
+        if(!isValid) {
+            return error
+        }
+        const newUser = await new Users(userProfile)
         if(newUser.password != newUser.confirmPassword) throw Error('passwords do not match!')
         const salt = await bcrypt.genSalt(10);
         newUser.password = await bcrypt.hash(newUser.password, salt);
@@ -25,10 +30,18 @@ module.exports = class UserAuthService{
      * @returns access to user's profile if found
      */
     static async userAuthentication(email) {
+        const { error, isValid } = await Validations.checkMail(email)
+        if(!isValid) {
+            return error
+        }
         return await Users.findOne({ email: email })
     }
 
     static async resetPasswordRequest(email) {
+        const { error, isValid } = await Validations.checkMail(email)
+        if(!isValid) {
+            return error
+        }
         //check if user exists
         const user = await Users.findOne({ email: email })
         //check user already has an existing token if true, delete token
@@ -48,15 +61,21 @@ module.exports = class UserAuthService{
         return resetToken
     }
 
-    static async passwordReset(userId, token, password) {
+    static async passwordReset(userId, token, authentication) {
+        const { error, isValid } = await Validations.checkPassword(authentication)
+        if(!isValid) {
+            return error
+        }
         const resetToken = await Token.findOne({ userId: userId })
-        console.log(resetToken)
         //check if given/passed token is valid
         let confirmToken = await bcrypt.compare(token, resetToken.token)
         if(!confirmToken) {
-            return Error('invalid token!')
+            throw Error('invalid token!')
         }
-        const newPassword = await bcrypt.hash(password, 10)
+        if(authentication.password !== authentication.confirmPassword) {
+            throw Error('Passwords do not match!')
+        }
+        const newPassword = await bcrypt.hash(authentication.password, 10)
         await Users.findOneAndUpdate({ _id: userId }, { $set: { password: newPassword, confirmPassword: newPassword }}, {runValidators: true, new: true})
 
         const user = await Users.findById(userId)
