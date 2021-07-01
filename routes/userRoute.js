@@ -17,6 +17,12 @@ router.post("/api/v1/user/user:id/profile/save", UserCtrl.createNewUser);
 api/v1/user/user:id/profile/
 to get all users
  * */
-router.get("/api/v1/user/:id/profile", UserCtrl.fetchUsers);
+router.get("/api/v1/user/user:id/profile", UserCtrl.fetchUsers);
 
+/**
+ * This is a PUT Request to Endpoint
+ * api/v1/user/user:id/profile/update
+ * to Update the profile of a user
+ */
+router.put("/api/v1/user/user:id/profile/update", UserCtrl.updateSingleUser);
 module.exports = router;

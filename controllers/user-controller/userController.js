@@ -31,3 +31,32 @@ exports.fetchUsers = (req, res) => {
     }
   });
 };
+
+exports.updateSingleUser = (req, res) => {
+  User.findByIdAndUpdate(
+    req.params.id,
+    {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+    },
+    (err, user) => {
+      if (err) {
+        return res.status(500).json({ message: err });
+      } else if (!user) {
+        return res.status(400).json({ message: "User Not Found" });
+      } else {
+        user.save((err, savedUser) => {
+          if (err) {
+            return res.status(400).json({ message: err });
+          } else {
+            return res
+              .status(200)
+              .json({ message: "User Updated Successfully" });
+          }
+        });
+      }
+    }
+  );
+};
