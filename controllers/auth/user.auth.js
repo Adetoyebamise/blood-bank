@@ -30,7 +30,7 @@ module.exports = class UserAuthController{
             return res.status(404).json({status: 'User not found!', err: user.msg})
         }
         if(!bcrypt.compareSync(password, user.password)) {
-            return res.status(401).json({err: 'wrong password!'})
+            return res.status(401).json({err: 'wrong username or wrong password!'})
         }
         const token = await jwt.sign({id: user.id}, 'bloodbank')
         return res.status(200).json({token: token, err: null})
