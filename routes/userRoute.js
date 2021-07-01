@@ -13,4 +13,10 @@ to create a new user
 * */
 router.post("/api/v1/user/user:id/profile/save", UserCtrl.createNewUser);
 
+/** This is a GET Request to Endpoint
+api/v1/user/user:id/profile/
+to get all users
+ * */
+router.get("/api/v1/user/:id/profile", UserCtrl.fetchUsers);
+
 module.exports = router;

@@ -19,3 +19,15 @@ exports.createNewUser = function (req, res) {
     }
   );
 };
+
+exports.fetchUsers = (req, res) => {
+  User.find({}, (err, users) => {
+    if (err) {
+      return res.status(500).json({
+        message: err,
+      });
+    } else {
+      return res.status(200).json({ users });
+    }
+  });
+};
