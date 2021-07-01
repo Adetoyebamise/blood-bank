@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-// we will need to bring in the middleware user authentication object here
+// we will need to bring in the user middleware authentication object here
 
 const UserCtrl = require("../controllers/user-controller/userController");
 
