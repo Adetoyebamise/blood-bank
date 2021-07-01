@@ -35,4 +35,22 @@ module.exports = class UserAuthController{
         const token = await jwt.sign({id: user.id}, 'bloodbank')
         return res.status(200).json({token: token, err: null})
     }
+
+    static async requestPasswordChange(req, res) {
+        let newToken = await UserAuthService.resetPasswordRequest(req.body.email)
+        if(!newToken) {
+            return res.status(400).json({err: 'Bad request'})
+        }
+        return res.status(200).json({status: 'A password reset link containing your reset token has been successfully sent to your email', token: newToken})
+    }
+
+    static async resetPassword(req, res) {
+        const passwordReset = await UserAuthService.passwordReset(req.params.userId, req.params.token, req.body.password)
+        if(!passwordReset) {
+            return res.status(400).json({err: 'unable to complete your request, please try again'})
+        }
+        passwordReset.password = undefined
+        passwordReset.confirmPassword = undefined
+        return res.status(200).json({status: 'password has been changed successfully', profile: passwordReset, err: null})
+    }
 }
