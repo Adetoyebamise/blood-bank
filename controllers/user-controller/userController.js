@@ -14,7 +14,9 @@ exports.createNewUser = function (req, res) {
           message: err,
         });
       } else {
-        return res.status(200).json({ message: "new user created", newUser });
+        return res
+          .status(200)
+          .json({ message: "new user profile created", newUser });
       }
     }
   );
@@ -45,7 +47,7 @@ exports.updateSingleUser = (req, res) => {
       if (err) {
         return res.status(500).json({ message: err });
       } else if (!user) {
-        return res.status(400).json({ message: "User Not Found" });
+        return res.status(400).json({ message: "User Profile Not Found" });
       } else {
         user.save((err, savedUser) => {
           if (err) {
@@ -53,10 +55,24 @@ exports.updateSingleUser = (req, res) => {
           } else {
             return res
               .status(200)
-              .json({ message: "User Updated Successfully" });
+              .json({ message: "User Profile Updated Successfully" });
           }
         });
       }
     }
   );
+};
+
+exports.deleteSingleUser = (req, res) => {
+  User.findByIdAndDelete(req.params.id, (err, user) => {
+    if (err) {
+      return res.status(500).json({ message: err });
+    } else if (!user) {
+      return res.status(404).json({ message: "User Profile was not found" });
+    } else {
+      return res
+        .status(200)
+        .json({ message: "User Profile Deleted Successfully" });
+    }
+  });
 };

@@ -25,4 +25,13 @@ router.get("/api/v1/user/user:id/profile", UserCtrl.fetchUsers);
  * to Update the profile of a user
  */
 router.put("/api/v1/user/user:id/profile/update", UserCtrl.updateSingleUser);
+
+/**
+ * This is a DELETE Request to Endpoint
+ * api/v1/user/user:id/profile/edit
+ * to Edit the profile of a user
+ */
+
+router.delete("/api/v1/user/user:id/profile/edit", UserCtrl.deleteSingleUser);
+
 module.exports = router;
