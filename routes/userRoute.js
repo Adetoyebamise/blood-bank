@@ -4,20 +4,13 @@ const router = express.Router();
 
 const UserCtrl = require("../controllers/user-controller/userController");
 
-router.get();
-
-/** 
-This is a POST Request to Endpoint 
-api/v1/user/user:id/profile/save 
-to create a new user
-* */
-router.post("/api/v1/user/user:id/profile/save", UserCtrl.createNewUser);
+// router.get();
 
 /** This is a GET Request to Endpoint
 api/v1/user/user:id/profile/
 to get all users
  * */
-router.get("/api/v1/user/user:id/profile", UserCtrl.fetchUsers);
+router.get("/api/v1/user/user:id/profile", UserCtrl.fetchSingleUser);
 
 /**
  * This is a PUT Request to Endpoint
