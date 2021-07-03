@@ -1,34 +1,8 @@
-// const mongoose = require("mongoose");
-// const Schema = mongoose.Schema;
-// const bloodbankSchema = new Schema(
-//   {
-//     bloodbankName: {
-//       type: String,
-//       required: true,
-//     },
-//     bloodbankType: {
-//       type: String,
-//       enum: ["public", "private"],
-//       required: true,
-//     },
-//     email: {
-//       type: String,
-//       required: true,
-//     },
-//     password: {
-//       type: String,
-//       required: true,
-//     },
-//   },
-//   { timestamps: true }
-// );
-
-// module.exports = mongoose.model("Bloodbank", bloodbankSchema);
 const mongoose = require("mongoose"),
   bcrypt = require("bcrypt"),
   bloodBankSchema = new mongoose.Schema(
     {
-      name: {
+      bloodbankName: {
         type: String,
         trim: true,
         required: true,
@@ -44,10 +18,10 @@ const mongoose = require("mongoose"),
         lowercase: true,
         unique: true,
       },
-      isPublic: {
-        type: Boolean,
+      bloodbankType: {
+        type: String,
+        enum: ["public", "private"],
         required: true,
-        default: false,
       },
     },
     {

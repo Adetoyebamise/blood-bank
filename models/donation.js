@@ -15,7 +15,7 @@ const mongoose = require("mongoose"),
       },
       bloodType: {
         type: String,
-        enum: ["AB+", "AB-", "A+", "A-", "B+", "B-", "0+", "O-"],
+        enum: ["AB+", "AB-", "A+", "A-", "B+", "B-", "O+", "O-"],
         required: true,
       },
       quantity: {
