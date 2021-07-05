@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 const User = require("../../models/user-model");
 
 exports.fetchSingleUser = (req, res) => {
@@ -56,6 +57,8 @@ exports.deleteSingleUser = (req, res) => {
   });
 };
 =======
+=======
+>>>>>>> 315067982ba1c9d602173e53827eb50d9c2703bf
 require('express-async-errors')
 const UserService = require('../../services/userService')
 
@@ -74,5 +77,9 @@ module.exports = class UserController{
             bloodRequest,
             err: null})
     }
+<<<<<<< HEAD
+}
+>>>>>>> 315067982ba1c9d602173e53827eb50d9c2703bf
+=======
 }
 >>>>>>> 315067982ba1c9d602173e53827eb50d9c2703bf
