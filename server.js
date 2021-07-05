@@ -1,8 +1,17 @@
 const express = require("express");
 const app = express();
-const logger = require("./configs/logger");
+// const logger = require("./configs/logger");
 const port = 3000 || process.env.PORT;
+const route = require("./routes/index");
+const connectDB = require("./dbConnection");
+const middleware = require("./middlewares/index");
 
-app.listen(3000, () => {
-  logger.log("info", `Alive on port ${port}`);
-});
+middleware(app);
+route(app);
+
+// set up app middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+//connect to db
+connectDB(app);
