@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
   purchaseRequestSchema = new mongoose.Schema(
     {
-      nameOfPatient: {
+      patientName: {
         type: String,
         required: true,
         trim: true,

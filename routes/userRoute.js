@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const UserController = require("../controllers/user-controller/userController");
 
 // we will need to bring in the user middleware authentication object here
 const authenticateUser = require("../controllers/auth/user.auth");
@@ -39,5 +40,9 @@ router.put("/api/v1/user/user:id/profile/update", UserCtrl.updateSingleUser);
  */
 
 router.delete("/api/v1/user/user:id/profile/edit", UserCtrl.deleteSingleUser);
+
+router.post("/buyblood/:userId", (req, res) =>
+  UserController.buyBloodRequest(req, res)
+);
 
 module.exports = router;
