@@ -72,4 +72,21 @@ module.exports = class Validations{
             isValid: Object.keys(error).length == 0
         }
     }
+
+    static async bloodPurchase(details) {
+        let error = {}
+        if(validator.isEmpty(details['patientName']) || validator.isEmpty(details['relationship'])) {
+            error.msg = 'please fill all fields!'
+        }
+        if(!validator.isAlpha(details['patientName']) || !validator.isAlpha(details['relationship'])) {
+            error.msg = 'patients\'s  name and relationship to patient entries can only consist of alphabets!'
+        }
+        if(validator.isBoolean(details['patientName']) || validator.isBoolean(details['relationship'])) {
+            error.msg = 'Boolean values cannot be taken as entries!'
+        }
+        return {
+            error,
+            isValid: Object.keys(error).length == 0
+        }
+    }
 }
