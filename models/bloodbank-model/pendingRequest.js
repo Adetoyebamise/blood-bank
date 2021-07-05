@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 const pendingRequestSchema = new mongoose.Schema({
-  nameOfPatient: {
+  hospital: {
+    type: String,
+    required: true
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Users'
+  },
+  patientName: {
     type: String,
     required: true,
     trim: true,
