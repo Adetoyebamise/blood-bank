@@ -24,9 +24,5 @@ const mongoose = require("mongoose"),
     {
       timestamps: true,
     }
-    uniqueId: {
-      type:String,
-      required:true,
-    },
   );
 module.exports = mongoose.model("PurchaseRequest", purchaseRequestSchema);
