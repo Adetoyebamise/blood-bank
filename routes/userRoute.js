@@ -1,18 +1,18 @@
 const express = require("express");
-const userController = require("../controllers/user-controller/userController");
+// const userController = require("../controllers/user-controller/userController");
 const router = express.Router();
-const UserController = require("../controllers/user-controller/userController");
+// const UserController = require("../controllers/user-controller/userController");
 
 // we will need to bring in the user middleware authentication object here
 const authenticateUser = require("../controllers/auth/user.auth");
-// require("../middlewares/index");
+ require("../middlewares/index");
 
 const UserCtrl = require("../controllers/user-controller/userController");
 const donationCtrl = require("../controllers/user-controller/donationHistory");
-const userHistoryRequestController = require("../controllers/user-controller/requestHistory")
+const requestController = require('../controllers/user-controller/userRequestController');
 
 router.post("/buyblood/:userId", (req, res) =>
-  UserController.buyBloodRequest(req, res)
+  UserCtrl.buyBloodRequest(req, res)
 );
 
 /**
@@ -27,9 +27,9 @@ router.get(
   donationCtrl.getAllDonations
 );
 
-router.get("/api/v1/user/user:id/profile", UserCtrl.fetchSingleUser);
-router.put("/api/v1/user/user:id/profile/update", UserCtrl.updateSingleUser);
-router.delete("/api/v1/user/user:id/profile/edit", UserCtrl.deleteSingleUser);
+// router.get("/api/v1/user/user:id/profile", UserCtrl.fetchSingleUser);
+// router.put("/api/v1/user/user:id/profile/update", UserCtrl.updateSingleUser);
+// router.delete("/api/v1/user/user:id/profile/edit", UserCtrl.deleteSingleUser);
 
 /**
  * Request to User Request history endpoint
@@ -37,9 +37,7 @@ router.delete("/api/v1/user/user:id/profile/edit", UserCtrl.deleteSingleUser);
  * querying the DB for all user request history
  */
 
-router.get(
-  "/api/v1/user/user:id/history/requestsummary", 
-  userHistoryRequestController.getUserHistory
-)
+router.get('/api/v1/user/:userid/history/requestsummary', requestController.getUniqId);
+
 
 module.exports = router;
