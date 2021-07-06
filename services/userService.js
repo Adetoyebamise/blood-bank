@@ -1,24 +1,29 @@
-const { v4: uuidv4 } = require('uuid');
-const userHistory = require('../models/purchaseRequest');
+require('express-async-errors')
+const PendingRequest = require('../models/bloodbank-model/pendingRequest')
+const Users = require("../models/user-model/userModel")
+const validation = require("../validations/user.validation")
 
-module.exports = class userService {
+module.exports = class UserServices{
     /**
-     * 
-     * @param {string} nameOfPatient request history displayed
+     * @desc saves a blood purcase request on pending to the database
+     * @param {userid} userId 
+     * @param {form entries} details 
+     * @returns copy of the saved entry
      */
-
-     static async userDetail(nameOfPatient) {
-  
-       let newUserHistory = new userHistory({
-       uniqueId: uuidv4(),
-       nameOfPatient,
-        
-      
-         });
-         return newUserHistory.save();
+    static async bloodBuyRequest(userId, details) {
+        const { error, isValid } = await validation.bloodPurchase(details)
+        if(!isValid) {
+            return error
         }
-     static async getUniqId (id) {
-            return userHistory.findbypk({ uniqueId: id });
-            }
-
+        let user = await Users.findById(userId)
+        let newRequest = await new PendingRequest({
+            hospital: details.hospital,
+            patientName: details.patientName,
+            bloodType: details.bloodType,
+            relationship: details.relationship,
+            quantity: details.quantity
+        })
+        newRequest.userId = user.id
+        return await newRequest.save()
     }
+}

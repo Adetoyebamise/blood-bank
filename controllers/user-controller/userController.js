@@ -1,36 +1,25 @@
-const userService = require("../../services/userService")
+require("express-async-errors");
+const UserService = require("../../services/userService");
 
-const { static } = require('express');
-
-
-
-module.exports = class userController {
-    static async userDetail(req, res) {
-        try {
-          let nameOfPatient = req.body.nameOfPatient
-          console.log(nameOfPatient);
-         let newUserHistory = await userService.userDetail(req.body.nameOfPatient);
-    
-         
-         res.status(201).json({"code" :"SUCCESS", "success": newTodo, "error":null});
-          
-        } catch (error) {
-          res.status(500).json({code: 'FAILED', success: null, error: error.message || "you cannot create todo for now" });
-         
-         }
-          
-        }
-
-
-    static async getUniqId(req, res){
-        try {
-            let eachUserHistory = await userService.getUniqId(req.params.id);
-
-            res.status(200).json({code: 'SUCCESS', 'success': eachUserHistory, error:null})
-        } catch (error) {
-            res
-            res.status(400).send({"message" : "You are missing vital credentials"})
-        }
-      }
-    
-}
+module.exports = class UserController {
+  /**
+   *@route PoST /api/v1/user/buyblood/:userId
+   *@returns success message and entry if successful else, returns a comprehensice error message
+   */
+  static async buyBloodRequest(req, res) {
+    const bloodRequest = await UserService.bloodBuyRequest(
+      req.params.userId,
+      req.body
+    );
+    if (!bloodRequest || bloodRequest.msg) {
+      return res
+        .status(400)
+        .json({ status: "Bad request, try again", err: bloodRequest.msg });
+    }
+    return res.status(200).json({
+      status: "your request for purchase of blood is now pending",
+      bloodRequest,
+      err: null,
+    });
+  }
+};
