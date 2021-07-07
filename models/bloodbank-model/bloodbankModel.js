@@ -23,6 +23,48 @@ const mongoose = require("mongoose"),
         enum: ["public", "private"],
         required: true,
       },
+      bloodType: {
+        ABpositive: {
+          type: Number,
+          default: 0,
+          min: 0,
+        },
+        ABminus: {
+          type: Number,
+          default: 0,
+          min: 0,
+        },
+        Apositive: {
+          type: Number,
+          default: 0,
+          min: 0,
+        },
+        Aminus: {
+          type: Number,
+          default: 0,
+          min: 0,
+        },
+        Bpositive: {
+          type: Number,
+          default: 0,
+          min: 0,
+        },
+        Bminus: {
+          type: Number,
+          default: 0,
+          min: 0,
+        },
+        Opositive: {
+          type: Number,
+          default: 0,
+          min: 0,
+        },
+        Ominus: {
+          type: Number,
+          default: 0,
+          min: 0,
+        },
+      },
     },
     {
       timestamps: true,
@@ -42,11 +84,5 @@ bloodBankSchema.pre("save", function (next) {
       next(error);
     });
 });
-
-bloodBankSchema.methods.isValidPassword = async function (password) {
-  const user = this;
-  const compare = await bcrypt.compare(password, user.password);
-  return compare;
-};
 
 module.exports = mongoose.model("BloodBank", bloodBankSchema);
