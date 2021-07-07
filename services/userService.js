@@ -1,9 +1,12 @@
+//Import Bloodbank model for searching for bloodbanks
+const bloodbank = require("../models/bloodbank-model/bloodbankModel");
+
 require('express-async-errors')
 const PendingRequest = require('../models/bloodbank-model/pendingRequest')
 const Users = require("../models/user-model/userModel")
 const validation = require("../validations/user.validation")
 
-module.exports = class UserServices{
+module.exports = class UserService{
     /**
      * @desc saves a blood purcase request on pending to the database
      * @param {userid} userId 
@@ -26,4 +29,17 @@ module.exports = class UserServices{
         newRequest.userId = user.id
         return await newRequest.save()
     }
+  
+  /**
+   * @param {search for bloodbank} search
+   * @returns list of blood bank that matches search text
+   */
+  static async search(bloodbankName) {
+    //Search db for related bloodbank name
+    let bloodbanks = await bloodbank.find({
+      bloodbankName: { $regex: ".*" + bloodbankName + ".*" },
+    });
+    //return search result
+    return bloodbanks;
+  }
 }
