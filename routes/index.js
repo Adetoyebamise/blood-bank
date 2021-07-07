@@ -1,4 +1,5 @@
 const userAuth = require("./user.auth");
+const userRoutes = require("./userRoute");
 const bloodbankAuth = require("./bloodbank.auth");
 const bloodbankRoutes = require("./bloodbankRoute");
 const userRoutes = require("./userRoute");
@@ -8,6 +9,8 @@ module.exports = (app) => {
   app.use("/api/v1/user", userRoutes);
   //user authentication
   app.use("/api/v1/user/auth", userAuth);
+  //For Other User's route
+  app.use("/api/v1/user", userRoutes);
   //Other bloodbank routes - Apart from authentication
   app.use("/api/v1/bloodbank", bloodbankRoutes);
   //For bloodbank Authentication
