@@ -31,7 +31,7 @@ exports.searchAllDonations = (req, res) => {
 
   // Here we are checking req.query for filters
   // And if there are filters, we will use them in the model.find.query
-  // To Serach for All Donations in the Database
+  // To Search for All Donations in the Database
 
   donationHistory.find(donations, (err, users) => {
     if (err) {
@@ -42,6 +42,7 @@ exports.searchAllDonations = (req, res) => {
   });
 };
 
+// Here we are creating a new Donor from donorModel Schema
 exports.createNewDonor = function (req, res) {
   newDonor.create(
     {

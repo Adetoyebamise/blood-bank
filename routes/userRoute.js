@@ -22,6 +22,8 @@ router.post("/buyblood/:userId", (req, res) =>
  */
 
 router.get("/:userId/donorsummary", donationCtrl.getAllDonations);
+router.get("/:userId/search", donationCtrl.searchAllDonations);
+router.post("/:userId/newdonor/add", donationCtrl.createNewDonor);
 
 router.get("/:userId/profile", UserCtrl.fetchSingleUser);
 router.put("/:userId/profile/save", UserCtrl.updateSingleUser);
