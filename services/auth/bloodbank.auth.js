@@ -28,8 +28,8 @@ module.exports = class BloodbankAuthService {
 
     //If password matches, encrypt and save to database
     // duplicate hashing
-//     const salt = await bcrypt.genSalt(10);
-//     newBloodbank.password = await bcrypt.hash(newBloodbank.password, salt);
+    //     const salt = await bcrypt.genSalt(10);
+    //     newBloodbank.password = await bcrypt.hash(newBloodbank.password, salt);
     //Return saved bloodbank to controller
     let savedBloodBank = await newBloodbank.save();
     console.log(savedBloodBank);
