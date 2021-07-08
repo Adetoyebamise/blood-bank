@@ -22,8 +22,9 @@ module.exports = class UserController {
       err: null,
     });
   }
-  
-  * @route PoST /api/v1/user/:userID/donate-blood
+
+  /**
+   * @route PoST /api/v1/user/:userID/donate-blood
    * @returns list of bloodbank with search request
    */
   static async search(req, res) {
@@ -34,4 +35,6 @@ module.exports = class UserController {
       success: true,
       data: searchResult,
       error: null,
+    })
+  }
 };
