@@ -29,7 +29,8 @@ router.post("/buyblood/:userId", (req, res) =>
  */
 
 router.get("api/v1/bloodbank/:bloodbankid/donorsummary", donationCtrl.getAllDonations);
-
+router.get("api/v1/bloodbank/:bloodbankid/search", donationCtrl.searchAllDonations);
+router.post("api/v1/bloodbank/:bloodbankid/newdonor/add", donationCtrl.createNewDonor);
 router.get("/api/v1/bloodbank/:bloodbankid/profile", UserCtrl.fetchSingleUser);
 router.put("/api/v1/bloodbank/:bloodbankid/profile/save", UserCtrl.updateSingleUser);
 router.delete("/api/v1/bloodbank/:bloodbankid/profile/edit", UserCtrl.deleteSingleUser);
