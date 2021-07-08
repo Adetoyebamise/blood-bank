@@ -14,7 +14,7 @@ const UserController = require("../controllers/user-controller/userController");
 const authenticateUser = require("../controllers/auth/user.auth");
 // require("../middlewares/index");
 
-const UserCtrl = require("../controllers/user-controller/userController");
+const UserCtrl = require("../controllers/user-controller/userProfileController");
 const donationCtrl = require("../controllers/user-controller/donationHistory");
 
 router.post("/buyblood/:userId", (req, res) =>
@@ -28,14 +28,11 @@ router.post("/buyblood/:userId", (req, res) =>
  * Quering the DB for user Blood Donation history
  */
 
-router.get(
-  "/api/v1/user/user:id/history/donationsummary",
-  donationCtrl.getAllDonations
-);
+router.get("api/v1/bloodbank/:bloodbankid/donorsummary", donationCtrl.getAllDonations);
 
-router.get("/api/v1/user/user:id/profile", UserCtrl.fetchSingleUser);
-router.put("/api/v1/user/user:id/profile/update", UserCtrl.updateSingleUser);
-router.delete("/api/v1/user/user:id/profile/edit", UserCtrl.deleteSingleUser);
+router.get("/api/v1/bloodbank/:bloodbankid/profile", UserCtrl.fetchSingleUser);
+router.put("/api/v1/bloodbank/:bloodbankid/profile/save", UserCtrl.updateSingleUser);
+router.delete("/api/v1/bloodbank/:bloodbankid/profile/edit", UserCtrl.deleteSingleUser);
 
 <<<<<<< HEAD
 <<<<<<< HEAD
