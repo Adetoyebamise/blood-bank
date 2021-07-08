@@ -28,6 +28,7 @@ module.exports = class UserController {
       err: null,
     });
   }
+<<<<<<< HEAD
 };
 <<<<<<< HEAD
 =======
@@ -59,3 +60,21 @@ module.exports = class UserController{
 >>>>>>> 315067982ba1c9d602173e53827eb50d9c2703bf
 =======
 >>>>>>> bb1c8b507ddb0771c87cc0cae38a824815cd1fae
+=======
+
+  /**
+   * @route PoST /api/v1/user/:userID/donate-blood
+   * @returns list of bloodbank with search request
+   */
+  static async search(req, res) {
+    let bloodbankName = req.body.search;
+    const searchResult = await UserService.search(bloodbankName);
+
+    res.json({
+      success: true,
+      data: searchResult,
+      error: null,
+    })
+  }
+};
+>>>>>>> 46df526db9f5ee0c105483e86564a35fd8574291

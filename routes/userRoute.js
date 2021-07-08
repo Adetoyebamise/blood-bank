@@ -2,7 +2,11 @@ const express = require("express");
 const router = express.Router();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 46df526db9f5ee0c105483e86564a35fd8574291
 const UserController = require("../controllers/user-controller/userController");
 
 >>>>>>> bb1c8b507ddb0771c87cc0cae38a824815cd1fae
@@ -12,39 +16,28 @@ const authenticateUser = require("../controllers/auth/user.auth");
 
 const UserCtrl = require("../controllers/user-controller/userController");
 const donationCtrl = require("../controllers/user-controller/donationHistory");
-// router.get();
 
-/** This is a GET Request to Endpoint
-api/v1/user/user:id/profile/
-to get all users
- * */
-router.get("/api/v1/user/user:id/profile", UserCtrl.fetchSingleUser);
+router.post("/buyblood/:userId", (req, res) =>
+  UserController.buyBloodRequest(req, res)
+);
 
 /**
- * This is a PUT Request to Endpoint
- * api/v1/user/user:id/profile/update
- * to Update the profile of a user
+ *  Request to Various Endpoints
+ * api/v1/user/user:id/profile/
+ * to Update the profile of a user and
+ * Quering the DB for user Blood Donation history
  */
 
 router.get(
   "/api/v1/user/user:id/history/donationsummary",
   donationCtrl.getAllDonations
 );
-/**
- * This is a GET Request to Endpoint
- * api/v1/user/user:id/history/donationsummary
- * to implement Donation History
- */
+
+router.get("/api/v1/user/user:id/profile", UserCtrl.fetchSingleUser);
 router.put("/api/v1/user/user:id/profile/update", UserCtrl.updateSingleUser);
-
-/**
- * This is a DELETE Request to Endpoint
- * api/v1/user/user:id/profile/edit
- * to Edit the profile of a user
- */
-
 router.delete("/api/v1/user/user:id/profile/edit", UserCtrl.deleteSingleUser);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 module.exports = router;
 =======
@@ -58,6 +51,12 @@ module.exports = router;
 router.post("/buyblood/:userId", (req, res) =>
   UserController.buyBloodRequest(req, res)
 );
+=======
+// User can search for bloodbanks by name. Name would be in req.body. i.e search form
+router.post("/:userID/donate-blood", (req, res) => {
+  UserController.search(req, res);
+});
+>>>>>>> 46df526db9f5ee0c105483e86564a35fd8574291
 
 module.exports = router;
 >>>>>>> bb1c8b507ddb0771c87cc0cae38a824815cd1fae
