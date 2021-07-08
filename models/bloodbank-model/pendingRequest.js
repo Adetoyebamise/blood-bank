@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const pendingRequestSchema = new mongoose.Schema({
-  hospital: {
-    type: String,
+  bloodBank: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "BloodBank",
     required: true,
   },
   userId: {
@@ -29,8 +30,9 @@ const pendingRequestSchema = new mongoose.Schema({
     required: true,
   },
   isPending: {
-    type: Boolean,
-    default: true,
+    type: String,
+    enum: ["pending", "cancel", "accepted"],
+    default: "pending",
   },
 });
 module.exports = mongoose.model("pendingRequest", pendingRequestSchema);
