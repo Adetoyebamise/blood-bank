@@ -32,7 +32,7 @@ const pendingRequestSchema = new mongoose.Schema({
   isPending: {
     type: String,
     enum: ["pending", "cancel", "accepted"],
-    default: pending,
+    default: "pending",
   },
 });
 module.exports = mongoose.model("pendingRequest", pendingRequestSchema);
