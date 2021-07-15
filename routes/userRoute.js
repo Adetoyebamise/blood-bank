@@ -11,10 +11,11 @@ const authenticateUser = require("../controllers/auth/user.auth");
 const UserCtrl = require("../controllers/user-controller/userProfileController");
 const donationCtrl = require("../controllers/user-controller/donationHistory");
 const requestController = require('../controllers/user-controller/userRequestController');
+const userrController = require('../controllers/user-controller/useProfileController');
 
-router.post("/buyblood/:userId", (req, res) =>
-  UserCtrl.buyBloodRequest(req, res)
-);
+// router.post("/buyblood/:userId", (req, res) =>
+//   UserCtrl.buyBloodRequest(req, res)
+// );
 
 /**
  *  Request to Various Endpoints
@@ -25,9 +26,9 @@ router.post("/buyblood/:userId", (req, res) =>
 
 router.get("/:userId/donorsummary", donationCtrl.getAllDonations);
 
-router.get("/:userId/profile", UserCtrl.fetchSingleUser);
-router.put("/:userId/profile/save", UserCtrl.updateSingleUser);
-router.delete("/:userId/profile/edit", UserCtrl.deleteSingleUser);
+// router.get("/:userId/profile", UserCtrl.fetchSingleUser);
+// router.put("/:userId/profile/save", UserCtrl.updateSingleUser);
+// router.delete("/:userId/profile/edit", UserCtrl.deleteSingleUser);
 
 router.post("/buyblood/:userId", (req, res) =>
   UserController.buyBloodRequest(req, res)
@@ -38,4 +39,6 @@ router.post("/:userID/donate-blood", (req, res) => {
   UserController.search(req, res);
 });
 
+router.get('/:userid/profile', userrController.getUserProfile);
+router.put('/:userid/profile/edit', userrController.editUserProfile);
 module.exports = router;

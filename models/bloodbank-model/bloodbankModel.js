@@ -11,6 +11,19 @@ const mongoose = require("mongoose"),
         type: String,
         required: true,
       },
+      address: {
+        type: String,
+        //required: true,
+      },
+      website: {
+        type: String,
+      },
+      contactNumber: {
+        type: Number,
+      },
+      briefDescription: {
+        type: String,
+      },
       email: {
         type: String,
         trim: true,

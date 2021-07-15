@@ -75,15 +75,65 @@ module.exports = class Validations{
 
     static async bloodPurchase(details) {
         let error = {}
-        if(validator.isEmpty(details['patientName']) || validator.isEmpty(details['relationship'])) {
+        if(validator.isEmpty(details['nameOfPatient']) || validator.isEmpty(details['relationship'])) {
             error.msg = 'please fill all fields!'
         }
-        if(!validator.isAlpha(details['patientName']) || !validator.isAlpha(details['relationship'])) {
-            error.msg = 'patients\'s  name and relationship to patient entries can only consist of alphabets!'
-        }
-        if(validator.isBoolean(details['patientName']) || validator.isBoolean(details['relationship'])) {
+        // if(!validator.isAlpha(details['nameOfPatient']) || !validator.isAlpha(details['relationship'])) {
+        //     error.msg = 'patients\'s  name and relationship to patient entries can only consist of alphabets!'
+        // }
+        if(validator.isBoolean(details['nameOfPatient']) || validator.isBoolean(details['relationship'])) {
             error.msg = 'Boolean values cannot be taken as entries!'
         }
+        return {
+            error,
+            isValid: Object.keys(error).length == 0
+        }
+    }
+
+    static async userProfileUpdate(body) {
+        let error = {}
+        console.log(error)
+
+        if(validator.isEmpty(body['gender']) || validator.isEmpty(body['dateOfBirth']) || validator.isEmpty(body['email'])) {
+            error = 'Please fill all fields!'
+        }
+
+        if(validator.isBoolean(body['gender'])) {
+            error = 'Boolean values cannot be taken as entries!'
+        }
+
+        if(!validator.isNumeric(body['phoneNumber'])){
+            error = 'can only be accept numbers!'
+        }
+
+        if(!validator.isAlpha(body['gender'], 'en-US', {ignore: ' '})) {
+            error = 'Accept Alphabets only'
+        }
+        
+        return {
+            error,
+            isValid: Object.keys(error).length == 0
+        }
+    }
+
+    static async bloodBankProfileUpdate(body) {
+        let error = {}
+
+        if(validator.isEmpty(body['bloodbankName']) || validator.isEmpty(body['address'])) {
+            error = 'Please fill all fields!'
+
+        }
+
+         if(validator.isBoolean(body['bloodbankName'])|| validator.isBoolean(body['contactNumber'])) {
+            error = 'Boolean values cannot be taken as entries!'
+         }
+
+         if(!validator.isMobilePhone(body['contactNumber'])) {
+            error = 'enter a valid mobile number!'
+        
+         }
+        
+        
         return {
             error,
             isValid: Object.keys(error).length == 0

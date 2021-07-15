@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+require('express-async-errors')
+// let validate = require('validator');
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -12,7 +14,19 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+    },
+
+    phoneNumber: {
+        type: Number,
+        
+        trim: true,
+    },
+    gender: {
+        type: String,
+    },
+    dateOfBirth: {
+        type: String,
     },
     password: {
         type: String,
