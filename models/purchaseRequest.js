@@ -1,6 +1,14 @@
 const mongoose = require("mongoose"),
   purchaseRequestSchema = new mongoose.Schema(
     {
+      bloodBank: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "BloodBank",
+      },
+      userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users",
+      },
       patientName: {
         type: String,
         required: true,
@@ -17,8 +25,9 @@ const mongoose = require("mongoose"),
         required: true,
       },
       isPending: {
-        type: Boolean,
-        default: true,
+        type: String,
+        enum: ["pending", "accepted", "cancel"],
+        default: "pending",
       },
     },
     {
