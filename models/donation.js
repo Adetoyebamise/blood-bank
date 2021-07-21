@@ -1,6 +1,10 @@
 const mongoose = require("mongoose"),
   donationSchema = new mongoose.Schema(
     {
+      bloodBank: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "BloodBank"
+      },
       nameOfPatient: {
         type: String,
         required: true,
