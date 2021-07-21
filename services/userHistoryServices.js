@@ -1,7 +1,6 @@
 require('express-async-errors')
 
-const userHistory = require('../models/bloodbank-model/pendingRequest');
-const config = require('../config/config.json')
+const userHistory = require('../models/bloodbank-model/pendingRequest')
 
 
 module.exports = class UserHistoryServices{

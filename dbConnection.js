@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
 const port = 3000 || process.env.PORT;
-// const logger = require("./config/logger");
 require('dotenv').config()
-const config = require('./config/config.json')
 
-const connectDB = async (app) => {
+const connectDB = async () => {
   try {
-    await mongoose.connect(config.mongodbURI, {
+    await mongoose.connect(process.env.MONGOURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,

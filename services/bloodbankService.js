@@ -14,7 +14,7 @@ module.exports = class bloodbankServices {
     ).lean();
   }
 
-  static async makeDonation() {
+  static async makeDonation(bloodBank) {
     
   }
 };

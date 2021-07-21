@@ -1,7 +1,6 @@
 require('express-async-errors')
 
 const bloodBankProfile = require('../models/bloodbank-model/bloodbankModel')
-const config = require('../config/config.json')
 const validation = require('../validations/user.validation')
 
 
