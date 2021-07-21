@@ -49,4 +49,16 @@ module.exports = class BloodbankController{
         }
         return res.status(200).json({ requests, err: null })
     }
+
+    /**
+     * @route PUT /api/v1/bloodbank/accept/:requestId
+     * @returns the updated request details
+     */
+    static async acceptPendingRequest(req, res) {
+        const acceptedRequest = await BloodbankService.approvePendingRequest(req.params.requestId)
+        if(!acceptedRequest) {
+            return res.status(400).json({ err: 'an error occured during the operation' })
+        }
+        return res.status(200).json({ acceptedRequest, err: null })
+    }
 }

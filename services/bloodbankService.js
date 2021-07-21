@@ -54,4 +54,13 @@ module.exports = class bloodbankServices {
   static async retrievePendingRequests(bloodBankId) {
     return await PendingRequest.find({ bloodBank: bloodBankId, isPending: "pending" })
   }
+
+  /**
+   * @desc change status of a request to 'accepted'
+   * @param {requestId} requestId 
+   * @returns the updated request details
+   */
+  static async approvePendingRequest(requestId) {
+    return await PendingRequest.findOneAndUpdate({ _id: requestId }, { isPending: "accepted" }, { runValidators: true, new: true })
+  }
 };

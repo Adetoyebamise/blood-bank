@@ -29,4 +29,7 @@ router.get('/donations/:bloodBankid', BloodbankController.getAllDonations)
 //get all pending requests for a particular bloodbank
 router.get('/pending-request/:bloodBankid', BloodbankController.getPendingRequests)
 
+//accept a pending request
+router.put('/accept/:requestId', BloodbankController.acceptPendingRequest)
+
 module.exports = router;
