@@ -14,6 +14,12 @@ module.exports = class bloodbankServices {
     ).lean();
   }
 
+  /**
+   * @desc creates details for a new donation
+   * @param {recipient bloodbank} bloodBankId 
+   * @param {donation details} details 
+   * @returns copy of donation details
+   */
   static async makeDonation(bloodBankId, details) {
     const { error, isValid } = await validator.newDonation(details)
     if(!isValid) {

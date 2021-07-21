@@ -14,6 +14,10 @@ module.exports = class BloodbankController{
         return res.status(200).json({ bloodbanks, err: null})
     }
 
+    /**
+     * @route PoST /api/v1/bloodbank/donations/:bloodbankid
+     * @returns details for the registered donation
+     */
     static async newDonation(req, res) {
         const donation = await BloodbankService.makeDonation(req.params.bloodBankid, req.body)
         if(!donation || donation.msg) {
