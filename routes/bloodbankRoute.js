@@ -20,4 +20,7 @@ router.put('/:bloodbankid/profile/edit', allBloodBankController.editBloodBankPro
 //Public Blood Bank request Approval
 router.get('/:bloodbankid/pending-request/accept', publicBloodBankController.approvePublicBankRequest)
 
+//make a donation
+router.post('/donations/:bloodBankid', BloodbankController.newDonation)
+
 module.exports = router;

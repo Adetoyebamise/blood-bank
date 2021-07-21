@@ -39,6 +39,23 @@ module.exports = class Validations{
        }
     }
 
+    static async newDonation(details) {
+        let error = {}
+        if(validator.isEmpty(details['nameOfPatient']) || validator.isEmpty(details['email'])) {
+            error.msg = 'please, fill in the fields'
+        }
+        if(!validator.isAlpha(details['nameOfPatient'])) {
+            error.msg = 'please, provide a valid name'
+        }
+        if(!validator.isEmail(details['email'])) {
+            error.msg = 'please, provide a valid email'
+        }
+        return {
+            error,
+            isValid: Object.keys(error).length == 0
+        }
+    }
+
     static async checkMail(mail) {
         let error = {}
         if(validator.isEmpty(mail)) {
@@ -78,9 +95,6 @@ module.exports = class Validations{
         if(validator.isEmpty(details['nameOfPatient']) || validator.isEmpty(details['relationship'])) {
             error.msg = 'please fill all fields!'
         }
-        // if(!validator.isAlpha(details['nameOfPatient']) || !validator.isAlpha(details['relationship'])) {
-        //     error.msg = 'patients\'s  name and relationship to patient entries can only consist of alphabets!'
-        // }
         if(validator.isBoolean(details['nameOfPatient']) || validator.isBoolean(details['relationship'])) {
             error.msg = 'Boolean values cannot be taken as entries!'
         }
@@ -130,10 +144,7 @@ module.exports = class Validations{
 
          if(!validator.isMobilePhone(body['contactNumber'])) {
             error = 'enter a valid mobile number!'
-        
          }
-        
-        
         return {
             error,
             isValid: Object.keys(error).length == 0

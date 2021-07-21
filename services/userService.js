@@ -19,7 +19,6 @@ module.exports = class UserService{
             return error
         }
         let user = await Users.findById(userId)
-        console.log(details)
         let newRequest = await new PendingRequest({
             bloodBank: details.bloodBank,
             nameOfPatient: details.nameOfPatient,

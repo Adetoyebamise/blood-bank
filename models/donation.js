@@ -26,12 +26,7 @@ const mongoose = require("mongoose"),
         type: Number,
         default: 1,
         required: true,
-      },
-      date: {
-        type: Date,
-        min: Date.now,
-        required: true,
-      },
+      }
     },
     {
       timestamps: true,

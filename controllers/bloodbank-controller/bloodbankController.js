@@ -1,7 +1,6 @@
 require('express-async-errors')
 const BloodbankService = require("../../services/bloodbankService")
 
-
 module.exports = class BloodbankController{
     /**
      * @route GET /api/v1/bloodbank/public
@@ -13,5 +12,13 @@ module.exports = class BloodbankController{
             return res.status(500).json({ err: 'an error occured while loading available bloodbanks'})
         }
         return res.status(200).json({ bloodbanks, err: null})
+    }
+
+    static async newDonation(req, res) {
+        const donation = await BloodbankService.makeDonation(req.params.bloodBankid, req.body)
+        if(!donation || donation.msg) {
+            return res.status(500).json({ status: "Bad request, try again!", err: donation.msg })
+        }
+        return res.status(200).json({ donation, err: null })
     }
 }
