@@ -2,6 +2,7 @@ require("express-async-errors");
 const BloodBank = require("../models/bloodbank-model/bloodbankModel");
 const Donation = require("../models/donation")
 const validator = require('../validations/user.validation')
+const PendingRequest = require('../models/bloodbank-model/pendingRequest')
 module.exports = class bloodbankServices {
   /**
  * @desc Get all public bloodbanks
@@ -43,5 +44,14 @@ module.exports = class bloodbankServices {
    */
   static async retrieveDonations(bloodBankId) {
     return await Donation.find({ bloodBank: bloodBankId })
+  }
+
+  /**
+   * @desc gets all pending requests for a specified bloodbank
+   * @param {bloodbank id} bloodBankId 
+   * @returns an array of all pending requests
+   */
+  static async retrievePendingRequests(bloodBankId) {
+    return await PendingRequest.find({ bloodBank: bloodBankId, isPending: "pending" })
   }
 };

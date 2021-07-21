@@ -37,4 +37,16 @@ module.exports = class BloodbankController{
         }
         return res.status(200).json({ donations, err: null })
     }
+
+    /**
+     * @route GET /api/v1/bloodbank/pending-request/:bloodbankid
+     * @returns all pending requests directed to the specified bloodbank
+     */
+    static async getPendingRequests(req, res) {
+        const requests = await BloodbankService.retrievePendingRequests(req.params.bloodBankid)
+        if(!requests) {
+            return res.status(400).json({ err: 'an error occured while loading pending requests' })
+        }
+        return res.status(200).json({ requests, err: null })
+    }
 }

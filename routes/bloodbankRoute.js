@@ -26,4 +26,7 @@ router.post('/donations/:bloodBankid', BloodbankController.newDonation)
 //get all donations for a particular bloodbank
 router.get('/donations/:bloodBankid', BloodbankController.getAllDonations)
 
+//get all pending requests for a particular bloodbank
+router.get('/pending-request/:bloodBankid', BloodbankController.getPendingRequests)
+
 module.exports = router;
