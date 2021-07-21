@@ -35,4 +35,13 @@ module.exports = class bloodbankServices {
     newDonation.bloodBank = bloodBank.id
     return await newDonation.save()
   }
+
+  /**
+   * @desc gets all donations made to a specified bloodbank
+   * @param {bloodBank id} bloodBankId 
+   * @returns a list of all donations made to the specified bloodbank
+   */
+  static async retrieveDonations(bloodBankId) {
+    return await Donation.find({ bloodBank: bloodBankId })
+  }
 };
