@@ -63,4 +63,32 @@ module.exports = class bloodbankServices {
   static async approvePendingRequest(requestId) {
     return await PendingRequest.findOneAndUpdate({ _id: requestId }, { isPending: "accepted" }, { runValidators: true, new: true })
   }
+
+  /**
+   * @desc change status of a request to 'cancel'
+   * @param {requestId} requestId 
+   * @returns the updated request details
+   */
+  static async rejectPendingRequest(requestId) {
+    return await PendingRequest.findOneAndUpdate({ _id: requestId }, { isPending: "cancel" }, { runValidators: true, new: true })
+  }
+
+  /**
+   * @desc gets all accepted requests by a specified bloodbank
+   * @param {bloodbankId} bloodBankId 
+   * @returns all the accepted request for the particular bloodbank
+   */
+  static async approvedPendingRequests(bloodBankid) {
+    console.log(bloodBankid)
+    return await PendingRequest.find({ bloodBank: bloodBankid, isPending: "accepted"})
+  }
+
+  /**
+   * @desc gets all rejected requests by a specified bloodbank
+   * @param {bloodbankId} bloodBankId 
+   * @returns all teh accepted request for the particular bloodbank
+   */
+  static async rejectedPendingRequests(bloodBankId) {
+    return await PendingRequest.find({ bloodBank: bloodBankId, isPending: "cancel" })
+  }
 };

@@ -61,4 +61,40 @@ module.exports = class BloodbankController{
         }
         return res.status(200).json({ acceptedRequest, err: null })
     }
+
+    /**
+     * @route PUT /api/v1/bloodbank/cancel/:requestId
+     * @returns the updated request details
+     */
+    static async cancelPendingRequest(req, res) {
+        const cancelledRequest = await BloodbankService.rejectPendingRequest(req.params.requestId)
+        if(!cancelledRequest) {
+            return res.status(400).json({ err: 'an error occured during the operation' })
+        }
+        return res.status(200).json({ cancelledRequest, err: null })
+    }
+
+    /**
+     * @route GET /api/v1/bloodbank/accepted-requests/:bloodbankId
+     * @returns all the accepted requests
+     */
+    static async acceptedPendingRequest(req, res) {
+        const acceptedRequests = await BloodbankService.approvedPendingRequests(req.params.bloodBankid)
+        if(!acceptedRequests) {
+            return res.status(400).json({ err: 'an error occured during the operation' })
+        }
+        return res.status(200).json({ acceptedRequests, err: null })
+    }
+
+     /**
+     * @route GET /api/v1/bloodbank/cancelled-requests/:bloodbankId
+     * @returns all the cancelled requests
+     */
+      static async cancelledPendingRequest(req, res) {
+        const cancelledRequests = await BloodbankService.rejectedPendingRequests(req.params.bloodBankid)
+        if(!cancelledRequests) {
+            return res.status(400).json({ err: 'an error occured during the operation' })
+        }
+        return res.status(200).json({ cancelledRequests, err: null })
+    }
 }

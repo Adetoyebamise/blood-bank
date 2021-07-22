@@ -32,4 +32,13 @@ router.get('/pending-request/:bloodBankid', BloodbankController.getPendingReques
 //accept a pending request
 router.put('/accept/:requestId', BloodbankController.acceptPendingRequest)
 
+//cancel a pending request
+router.put('/cancel/:requestId', BloodbankController.cancelPendingRequest)
+
+//get all accepted requests
+router.get('/accepted-requests/:_id', BloodbankController.acceptedPendingRequest)
+
+//get all cancelled requests
+router.get('/cancelled-requests/:bloodbankid', BloodbankController.cancelledPendingRequest)
+
 module.exports = router;
