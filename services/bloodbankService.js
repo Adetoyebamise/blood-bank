@@ -79,16 +79,15 @@ module.exports = class bloodbankServices {
    * @returns all the accepted request for the particular bloodbank
    */
   static async approvedPendingRequests(bloodBankid) {
-    console.log(bloodBankid)
     return await PendingRequest.find({ bloodBank: bloodBankid, isPending: "accepted"})
   }
 
   /**
    * @desc gets all rejected requests by a specified bloodbank
    * @param {bloodbankId} bloodBankId 
-   * @returns all teh accepted request for the particular bloodbank
+   * @returns all the accepted request for the particular bloodbank
    */
-  static async rejectedPendingRequests(bloodBankId) {
-    return await PendingRequest.find({ bloodBank: bloodBankId, isPending: "cancel" })
+  static async rejectedPendingRequests(bloodBankid) {
+    return await PendingRequest.find({ bloodBank: bloodBankid, isPending: "cancel" })
   }
 };
