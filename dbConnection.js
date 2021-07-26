@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const port = 3000 || process.env.PORT;
-require('dotenv').config()
+require("dotenv").config();
 
 const connectDB = async () => {
   try {
@@ -8,7 +8,7 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
-      useFindAndModify: false
+      useFindAndModify: false,
     });
     console.log("connected to db");
   } catch (err) {
