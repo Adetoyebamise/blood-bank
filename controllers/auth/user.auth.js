@@ -13,7 +13,7 @@ module.exports = class UserAuthController {
     if (!user || user.msg)
       return res.status(400).json({ status: "Bad request", err: user.msg });
     user.password = undefined;
-    user.confirmPassword = undefined;
+    // user.confirmPassword = undefined;
     return res.status(200).json({
       user: user,
       err: null,

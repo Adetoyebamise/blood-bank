@@ -8,7 +8,8 @@ module.exports = class Validations {
   static async newUser(userProfile) {
     let error = {};
     if (
-      validator.isEmpty(userProfile["fullName"]) ||
+      validator.isEmpty(userProfile["firstName"]) ||
+      validator.isEmpty(userProfile["lastName"]) ||
       validator.isEmpty(userProfile["email"]) ||
       validator.isEmpty(userProfile["password"]) ||
       validator.isEmpty(userProfile["confirmPassword"])
@@ -17,12 +18,20 @@ module.exports = class Validations {
     }
 
     if (
-      validator.isBoolean(userProfile["fullName"]) ||
+      validator.isBoolean(userProfile["firstName"]) ||
+      validator.isEmpty(userProfile["lastName"]) ||
       validator.isBoolean(userProfile["email"]) ||
       validator.isBoolean(userProfile["password"]) ||
       validator.isBoolean(userProfile["confirmPassword"])
     ) {
       error.msg = "sorry, boolean values are not allowed";
+    }
+
+    if (
+      !validator.isAlpha(userProfile["firstName"]) ||
+      !validator.isAlpha(userProfile["lastName"])
+    ) {
+      error.msg = "Name can only be alphabets";
     }
 
     if (!validator.isEmail(userProfile["email"])) {
