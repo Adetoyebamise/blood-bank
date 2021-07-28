@@ -20,7 +20,8 @@ module.exports = class UserAuthService {
       throw Error("passwords do not match!");
     const salt = await bcrypt.genSalt(10);
     newUser.password = await bcrypt.hash(newUser.password, salt);
-    newUser.confirmPassword = await bcrypt.hash(newUser.confirmPassword, salt);
+    // newUser.confirmPassword = await bcrypt.hash(newUser.confirmPassword, salt);
+    newUser.confirmPassword = undefined
     let user = await newUser.save();
     await sendEmail(
       user.email,
