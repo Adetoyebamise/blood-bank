@@ -1,5 +1,5 @@
 //Import Bloodbank model for searching for bloodbanks
-const bloodbank = require("../models/bloodbank-model/bloodbankModel");
+const Bloodbank = require("../models/bloodbank-model/bloodbankModel");
 require('express-async-errors')
 const PendingRequest = require('../models/bloodbank-model/pendingRequest')
 const Users = require("../models/user-model/userModel")
@@ -12,19 +12,20 @@ module.exports = class UserService{
      * @param {form entries} details 
      * @returns copy of the saved entry
      */
-    static async bloodBuyRequest(userId, details) {
+    static async bloodBuyRequest(userId, bloodBankId, details) {
         const { error, isValid } = await validation.bloodPurchase(details)
         if(!isValid) {
             return error
         }
         let user = await Users.findById(userId)
+        let bloodbank = await Bloodbank.findById(bloodBankId)
         let newRequest = await new PendingRequest({
-            bloodBank: details.bloodBank,
             nameOfPatient: details.nameOfPatient,
             bloodType: details.bloodType,
             relationship: details.relationship,
             quantity: details.quantity
         })
+        newRequest.bloodBank = bloodbank.id
         newRequest.userId = user.id
         return await newRequest.save()
     }

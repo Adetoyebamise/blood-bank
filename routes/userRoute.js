@@ -30,7 +30,7 @@ router.get("/:userId/donorsummary", donationCtrl.getAllDonations);
 // router.put("/:userId/profile/save", UserCtrl.updateSingleUser);
 // router.delete("/:userId/profile/edit", UserCtrl.deleteSingleUser);
 
-router.post("/buyblood/:userId", (req, res) =>
+router.post("/buyblood/:bloodBankId/:userId", (req, res) =>
   UserController.buyBloodRequest(req, res)
 );
 
