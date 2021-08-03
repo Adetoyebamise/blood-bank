@@ -12,6 +12,7 @@ const UserCtrl = require("../controllers/user-controller/userProfileController")
 const donationCtrl = require("../controllers/user-controller/donationHistory");
 const requestController = require('../controllers/user-controller/userRequestController');
 const userrController = require('../controllers/user-controller/useProfileController');
+const userPendingControllers = require('../controllers/user-controller/userPendingController')
 
 // router.post("/buyblood/:userId", (req, res) =>
 //   UserCtrl.buyBloodRequest(req, res)
@@ -41,4 +42,9 @@ router.post("/:userID/donate-blood", (req, res) => {
 
 router.get('/:userid/profile', userrController.getUserProfile);
 router.put('/:userid/profile/edit', userrController.editUserProfile);
+
+//User SummaryPending results
+router.get('/:userid/status/pendingsummary', userPendingControllers.getUserPendingSummary );
+router.put('/:userid/status/pendingSummary/edit', userPendingControllers.editUserPendingSummary);
+router.delete('/:userid/status/pendingSummary/delete', userPendingControllers.deleteUserPendingSummary);
 module.exports = router;
