@@ -19,10 +19,12 @@ module.exports = class Validations {
 
     if (
       validator.isBoolean(userProfile["firstName"]) ||
-      validator.isEmpty(userProfile["lastName"]) ||
-      validator.isBoolean(userProfile["email"]) ||
-      validator.isBoolean(userProfile["password"]) ||
-      validator.isBoolean(userProfile["confirmPassword"])
+      validator.isBoolean(
+        userProfile["lastName"] ||
+          validator.isBoolean(userProfile["email"]) ||
+          validator.isBoolean(userProfile["password"]) ||
+          validator.isBoolean(userProfile["confirmPassword"])
+      )
     ) {
       error.msg = "sorry, boolean values are not allowed";
     }
@@ -31,7 +33,7 @@ module.exports = class Validations {
       !validator.isAlpha(userProfile["firstName"]) ||
       !validator.isAlpha(userProfile["lastName"])
     ) {
-      error.msg = "Name can only be alphabets";
+      error.msg = "Names can only possibly be in alphabets!";
     }
 
     if (!validator.isEmail(userProfile["email"])) {

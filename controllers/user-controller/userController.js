@@ -8,6 +8,7 @@ module.exports = class UserController {
   static async buyBloodRequest(req, res) {
     const bloodRequest = await UserService.bloodBuyRequest(
       req.params.userId,
+      req.params.bloodBankId,
       req.body
     );
     if (!bloodRequest || bloodRequest.msg) {

@@ -78,8 +78,8 @@ module.exports = class bloodbankServices {
    * @param {bloodbankId} bloodBankId 
    * @returns all the accepted request for the particular bloodbank
    */
-  static async approvedPendingRequests(bloodBankid) {
-    return await PendingRequest.find({ bloodBank: bloodBankid, isPending: "accepted"})
+  static async approvedPendingRequests(bloodBankId) {
+    return await PendingRequest.find({ bloodBank: bloodBankId, isPending: "accepted" })
   }
 
   /**

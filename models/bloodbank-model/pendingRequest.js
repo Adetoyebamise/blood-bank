@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const pendingRequestSchema = new mongoose.Schema({
   bloodBank: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "BloodBank",
     required: true,
   },
