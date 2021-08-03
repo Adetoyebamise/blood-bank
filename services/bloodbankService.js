@@ -85,7 +85,7 @@ module.exports = class bloodbankServices {
   /**
    * @desc gets all rejected requests by a specified bloodbank
    * @param {bloodbankId} bloodBankId 
-   * @returns all the accepted request for the particular bloodbank
+   * @returns all the cancelled request for the particular bloodbank
    */
   static async rejectedPendingRequests(bloodBankid) {
     return await PendingRequest.find({ bloodBank: bloodBankid, isPending: "cancel" })

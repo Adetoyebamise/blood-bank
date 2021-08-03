@@ -6,12 +6,12 @@ const UserController = require("../controllers/user-controller/userController");
 
 // we will need to bring in the user middleware authentication object here
 const authenticateUser = require("../controllers/auth/user.auth");
- require("../middlewares/index");
+require("../middlewares/index");
 
 const UserCtrl = require("../controllers/user-controller/userProfileController");
 const donationCtrl = require("../controllers/user-controller/donationHistory");
-const requestController = require('../controllers/user-controller/userRequestController');
-const userrController = require('../controllers/user-controller/useProfileController');
+const requestController = require("../controllers/user-controller/userRequestController");
+const userrController = require("../controllers/user-controller/useProfileController");
 
 // router.post("/buyblood/:userId", (req, res) =>
 //   UserCtrl.buyBloodRequest(req, res)
@@ -30,15 +30,17 @@ router.get("/:userId/donorsummary", donationCtrl.getAllDonations);
 // router.put("/:userId/profile/save", UserCtrl.updateSingleUser);
 // router.delete("/:userId/profile/edit", UserCtrl.deleteSingleUser);
 
-router.post("/buyblood/:bloodBankId/:userId", (req, res) =>
+router.post("/:userId/buyblood", (req, res) =>
   UserController.buyBloodRequest(req, res)
 );
+
+router.put('/:userId/status/pendingsummary/:pendingsummaryId/edit', UserController.editPendingRequest)
 
 // User can search for bloodbanks by name. Name would be in req.body. i.e search form
 router.post("/:userID/donate-blood", (req, res) => {
   UserController.search(req, res);
 });
 
-router.get('/:userid/profile', userrController.getUserProfile);
-router.put('/:userid/profile/edit', userrController.editUserProfile);
+router.get("/:userid/profile", userrController.getUserProfile);
+router.put("/:userid/profile/edit", userrController.editUserProfile);
 module.exports = router;
