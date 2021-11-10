@@ -1,6 +1,10 @@
 const mongoose = require("mongoose"),
   donationSchema = new mongoose.Schema(
     {
+      bloodBank: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "BloodBank"
+      },
       nameOfPatient: {
         type: String,
         required: true,
@@ -22,12 +26,7 @@ const mongoose = require("mongoose"),
         type: Number,
         default: 1,
         required: true,
-      },
-      date: {
-        type: Date,
-        min: Date.now,
-        required: true,
-      },
+      }
     },
     {
       timestamps: true,

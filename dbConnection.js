@@ -4,7 +4,7 @@ const logger = require("./config/logger");
 require("dotenv").config();
 const config = require("./config/config.json");
 
-const connectDB = async (app) => {
+const connectDB = async () => {
   try {
     await mongoose.connect(config.databaseURL, {
       useNewUrlParser: true,
