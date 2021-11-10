@@ -8,7 +8,6 @@ const connectDB = require("./dbConnection");
 //connect to db
 connectDB(app);
 
-route(app);
 
 app.listen(port, () => {
     console.log(`listening on port:${port}`)
